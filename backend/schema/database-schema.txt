@@ -1,0 +1,65 @@
+-- Match records
+CREATE TABLE IF NOT EXISTS match(
+id INT NOT NULL, 
+version VARCHAR(30) NOT NULL, 
+duration INT NOT NULL, 
+region VARCHAR(10) NOT NULL, 
+PRIMARY KEY (id)
+);
+
+-- Participants in a match
+CREATE TABLE IF NOT EXISTS match_participant(
+match_id INT NOT NULL, 
+participant_id INT NOT NULL, 
+champion_id INT NOT NULL, 
+team_id INT NOT NULL, 
+stats_id INT NOT NULL,
+win TINYINT(1) NOT NULL, 
+lane VARCHAR(10) NOT NULL,  
+PRIMARY KEY (match_id, participant_id), 
+FOREIGN KEY (match_id) REFERENCES match(id)
+);
+
+-- participants stats
+CREATE TABLE IF NOT EXISTS participant_stat(
+match_id INT NOT NULL, 
+participant_id INT NOT NULL, 
+kills INT NOT NULL, 
+deaths INT NOT NULL, 
+assists INT NOT NULL, 
+champ_level INT NOT NULL, 
+gold_earned INT NOT NULL, 
+item_0 INT NOT NULL, 
+item_1 INT NOT NULL, 
+item_2 INT NOT NULL, 
+item_3 INT NOT NULL, 
+item_4 INT NOT NULL, 
+item_5 INT NOT NULL, 
+item_6 INT NOT NULL, 
+magic_damage_dealt INT NOT NULL, 
+magic_damage_champs INT NOT NULL, 
+magic_damage_taken INT NOT NULL, 
+win TINYINT(1) NOT NULL, 
+PRIMARY KEY (match_id, participant_id), 
+FOREIGN KEY (match_id) REFERENCES match(id), 
+FOREIGN KEY (participant_id) REFERENCES match_participant(participant_id)
+);
+
+-- Champions that were banned
+CREATE TABLE IF NOT EXISTS banned_champion(
+match_id INT NOT NULL, 
+champion_id INT NOT NULL, 
+PRIMARY KEY (match_id, champion_id), 
+FOREIGN KEY (match_id) REFERENCES match(id)
+FOREIGN KEY (champion_id) REFERENCES champion(id)
+);
+
+-- Items
+CREATE TABLE IF NOT EXISTS item(
+
+);
+
+-- Champions
+CREATE TABLE IF NOT EXISTS champion(
+
+);

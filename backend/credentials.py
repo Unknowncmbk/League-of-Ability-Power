@@ -13,7 +13,7 @@ class Credentials(object):
         return "api_key: " + str(self.api_key) + "\nhost: " + str(self.host) + "\nuser: " + str(self.username) + "\npass: " + str(self.password) + "\ndb: " + str(self.database) 
 
 
-#read file for client-id/client-secret
+#read file for database details, riot api key
 json_data=open("../credentials.txt").read()
 data = json.loads(json_data)
 

@@ -61,5 +61,8 @@ CREATE TABLE IF NOT EXISTS item(
 
 -- Champions
 CREATE TABLE IF NOT EXISTS champion(
-
+id INT NOT NULL, 
+name VARCHAR(30) NOT NULL, 
+title VARCHAR(50) NOT NULL, 
+PRIMARY KEY (id)
 );

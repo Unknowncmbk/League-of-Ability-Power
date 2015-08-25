@@ -190,13 +190,13 @@ def fetch_match(match_id, region):
 
     return Match(match_id, version, duration, region, list_participants, banned_champs)
 
-match = fetch_match(1852538938, 'na')
+# match = fetch_match(1852538938, 'na')
 
-# save the match to db
-match.save()
+# # save the match to db
+# match.save()
 
-# save the participants
-for p in match.participants:
-    p.save()
+# # save the participants
+# for p in match.participants:
+#     p.save()
 
 

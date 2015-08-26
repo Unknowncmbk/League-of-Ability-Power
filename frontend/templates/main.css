@@ -1,0 +1,30 @@
+.first{
+	height: 700px ;
+	width: 100%;
+	background-image:url("./pics/backgroundLeague.png");
+	position: relative;
+}
+.second{
+	background: black;
+	position:relative;
+	width: 100%;
+	height: 1000px;
+}
+.top-navigation{
+	position:fixed;
+	z-index: 1;
+	width: 100%;
+}
+.top {
+	width: 10%;
+	height: 100%;
+}
+.top:active{
+	background-color:red;
+	color: red;
+}
+
+.top:hover{
+	color: gray;
+}
+

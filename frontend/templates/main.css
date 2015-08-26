@@ -23,7 +23,7 @@
 
 .centered {
   position: relative;
-  top: 45%;
+  top: 49%;
   left: 50%;
   /* bring your own prefixes */
   transform: translate(-50%, -50%);
@@ -37,7 +37,7 @@
 	background-image:url("./pics/paper.jpg") ;
 	width: 50%;
 	height: 45%;
-
+	
 	border-width: 10pt;
 	-webkit-border-image:url("./pics/border.png") 12 repeat;
 	-moz-border-image:url("./pics/border.png") 12 repeat;

@@ -34,7 +34,7 @@ video {
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 2em;
-  opacity:.3;
+  opacity:.1;
 
   transition: opacity 2s;
   -webkit-transition: opacity 2s;

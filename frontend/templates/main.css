@@ -30,7 +30,9 @@
 }
 
 .about{
-	font-size: 100%;
+	overflow: auto;
+	font-family: Times new roman;
+	font-size: 16px; 
 	padding: 2% 2% 1% 2% ;
 	background-image:url("./pics/paper.jpg") ;
 	width: 50%;

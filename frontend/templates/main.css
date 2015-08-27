@@ -1,0 +1,46 @@
+.top-navigation{
+	position:fixed;
+	z-index: 1;
+	width: 100%;
+}
+
+
+
+
+.first{
+	height: 700px ;
+	width: 100%;
+	background-image:url("./pics/backgroundLeague.png");
+	position: relative;
+}
+.second{
+	background: black;
+	position:relative;
+	width: 100%;
+	height: 1000px;
+}
+
+
+.centered {
+  position: relative;
+  top: 49%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}
+
+.about{
+	overflow: auto;
+	font-family: Times new roman;
+	font-size: 16px; 
+	padding: 2% 2% 1% 2% ;
+	background-image:url("./pics/paper.jpg") ;
+	width: 50%;
+	height: 45%;
+	
+	border-width: 10pt;
+	-webkit-border-image:url("./pics/border.png") 12 repeat;
+	-moz-border-image:url("./pics/border.png") 12 repeat;
+	border-image:url("./pics/border.png") 12 repeat;
+
+}

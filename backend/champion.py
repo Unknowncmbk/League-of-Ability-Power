@@ -1,7 +1,11 @@
 #!/usr/bin/python
 
-import MySQLdb
+# local imports
 import credentials
+import match
+
+# python modules
+import MySQLdb
 import urllib
 import json
 
@@ -143,11 +147,87 @@ def fetch_all_champions():
 
 	return champs
 
+def get_ban_rate(champion_id, version, region):
+    '''
+    Args:
+        champion_id: The id of the champion
+        version: Version of the game
+        region: region of the game
+    Returns:
+        The champions's ban rate.
+    '''
+
+    # Get new database instance
+    db = credentials.getDatabase()
+
+    cur = db.cursor()
+    query = '''SELECT C.id, C.name, COUNT(*) FROM champion C, banned_champion BC, game G WHERE BC.match_id=G.id AND BC.champion_id=C.id AND C.id = %s AND G.version = %s AND G.region = %s;'''
+
+    data = (champion_id, version, region)
+    cur.execute(query, data)
+
+    champion_name = "N/A"
+    count = 0
+
+    for tup in cur:
+        champion_name = str(tup[1])
+        count = int(tup[2])
+
+    # build response object
+    champ = {}
+    champ['id'] = champion_id
+    champ['name'] = champion_name
+    champ['number'] = count
+
+    # commit query
+    db.commit()
+    db.close()
+
+    return champ
+
+def get_all_ban_rates(version, region):
+    '''
+    Args:
+        version: version of the game
+        region: region of the game
+    Returns:
+        All the champions ban rates.
+    '''
+    # Get new database instance
+    db = credentials.getDatabase()
+
+    cur = db.cursor()
+    query = '''SELECT C.id, C.name, COUNT(*) FROM champion C, banned_champion BC, game G WHERE BC.match_id=G.id AND BC.champion_id=C.id AND G.version = %s AND G.region = %s GROUP BY C.id ORDER BY COUNT(*) DESC;'''
+
+    data = (version, region)
+    cur.execute(query, data)
+
+    champions = []
+
+    for tup in cur:
+        # build each record as a reponse object
+        champ = {}
+        champ['id'] = int(tup[0])
+        champ['name'] = str(tup[1])
+        champ['number'] = int(tup[2])
+        if champ['number'] != 0:
+            champ['ban_rate'] = round(float(champ['number']) / float(match.get_total_matches(version, region)), 2)
+        else:
+            champ['ban_rate'] = 0
+        champions.append(champ)
+
+    # commit query
+    db.commit()
+    db.close()
+
+    return champions
+
 # # to populate the database
 # result = fetch_all_champions()
 # for c in result:
 # 	c.save()
 
+# print(get_all_ban_rates('5.14.0.329', 'na'))
 
 
 

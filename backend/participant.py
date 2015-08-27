@@ -11,14 +11,14 @@ import urllib
 import json
 
 class Participant(object):
-    def __init__(self, match_id, participant_id, champion_id, team_id, win, lane, items, stat):
+    def __init__(self, match_id, participant_id, champion_id, team_id, win, lane, inventory, stat):
         self.match_id = match_id
         self.participant_id = participant_id
         self.champion_id = champion_id
         self.team_id = team_id
         self.win = win
         self.lane = lane
-        self.items = items
+        self.inventory = inventory
         self.stat = stat
 
     def __str__(self):
@@ -33,7 +33,7 @@ class Participant(object):
         db = credentials.getDatabase()
 
         cur = db.cursor()
-        query = '''INSERT IGNORE INTO match_participant (match_id, participant_id, champion_id, team_id, win, lane)
+        query = '''INSERT IGNORE INTO participant (match_id, participant_id, champion_id, team_id, win, lane)
                 VALUES(%s, %s, %s, %s, %s, %s);'''
 
         data = (self.match_id, self.participant_id, self.champion_id, self.team_id, self.win, self.lane)
@@ -43,14 +43,14 @@ class Participant(object):
         db.commit()
         db.close()
 
-        self.save_items()
+        self.save_inventory()
         self.save_stats()
 
         return True
 
-    def save_items(self):
-        item = self.items
-        item.save()
+    def save_inventory(self):
+        for item in self.inventory:
+            item.save()
 
     def save_stats(self):
         stats = self.stat
@@ -69,7 +69,7 @@ def load(match_id, participant_id):
     db = credentials.getDatabase()
 
     cur = db.cursor()
-    query = '''SELECT * FROM match_participant WHERE match_id = %s AND participant_id = %s;'''
+    query = '''SELECT * FROM participant WHERE match_id = %s AND participant_id = %s;'''
     cur.execute(query, match_id, participant_id)
 
     p = ""

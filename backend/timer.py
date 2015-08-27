@@ -68,8 +68,15 @@ def read_data():
 				json_data = open(file_name).read()
 				data = json.loads(json_data)
 
+				# local counter to limit match ids
+				counter = 0
+
 				# for each match in this file
 				for match_id in data:
+
+					counter += 1
+					if counter > 500:
+						break
 
 					# isolate region
 					parts = f.split(".")

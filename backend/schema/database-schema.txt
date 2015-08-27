@@ -1,5 +1,5 @@
--- Match records
-CREATE TABLE IF NOT EXISTS game_match(
+-- Game records
+CREATE TABLE IF NOT EXISTS game(
 id INT NOT NULL, 
 version VARCHAR(30) NOT NULL, 
 duration INT NOT NULL, 
@@ -8,7 +8,7 @@ PRIMARY KEY (id)
 );
 
 -- Participants in a match
-CREATE TABLE IF NOT EXISTS match_participant(
+CREATE TABLE IF NOT EXISTS participant(
 match_id INT NOT NULL, 
 participant_id INT NOT NULL, 
 champion_id INT NOT NULL, 
@@ -16,7 +16,7 @@ team_id INT NOT NULL,
 win TINYINT(1) NOT NULL, 
 lane VARCHAR(10) NOT NULL,  
 PRIMARY KEY (match_id, participant_id), 
-FOREIGN KEY (match_id) REFERENCES game_match(id)
+FOREIGN KEY (match_id) REFERENCES game(id)
 );
 
 -- participants stats
@@ -33,23 +33,18 @@ champ_level INT NOT NULL,
 gold_earned INT NOT NULL, 
 win TINYINT(1) NOT NULL, 
 PRIMARY KEY (match_id, participant_id), 
-FOREIGN KEY (match_id) REFERENCES game_match(id)
+FOREIGN KEY (match_id) REFERENCES game(id)
 );
 
 -- keeps track of participants items
 CREATE TABLE participant_item(
 match_id INT NOT NULL, 
 participant_id INT NOT NULL, 
-item0 INT NOT NULL, 
-item1 INT NOT NULL, 
-item2 INT NOT NULL, 
-item3 INT NOT NULL, 
-item4 INT NOT NULL, 
-item5 INT NOT NULL, 
-item6 INT NOT NULL, 
+item INT NOT NULL, 
+slot INT NOT NULL, 
 win TINYINT(1) NOT NULL, 
-PRIMARY KEY (match_id, participant_id), 
-FOREIGN KEY (match_id) REFERENCES game_match(id)
+INDEX (match_id, participant_id), 
+FOREIGN KEY (match_id) REFERENCES game(id)
 );
 
 -- Champions that were banned
@@ -57,7 +52,7 @@ CREATE TABLE IF NOT EXISTS banned_champion(
 match_id INT NOT NULL, 
 champion_id INT NOT NULL, 
 PRIMARY KEY (match_id, champion_id), 
-FOREIGN KEY (match_id) REFERENCES game_match(id)
+FOREIGN KEY (match_id) REFERENCES game(id)
 );
 
 -- Items

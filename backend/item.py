@@ -1,7 +1,10 @@
 #!/usr/bin/python
 
-import MySQLdb
+# local imports
 import credentials
+
+# python modules
+import MySQLdb
 import urllib
 import json
 

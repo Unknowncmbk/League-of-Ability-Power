@@ -32,7 +32,7 @@ class Match(object):
         db = credentials.getDatabase()
 
         cur = db.cursor()
-        query = '''INSERT IGNORE INTO game_match (id, version, duration, region)
+        query = '''INSERT IGNORE INTO game (id, version, duration, region)
                 VALUES(%s, %s, %s, %s);'''
 
         data = (self.match_id, self.version, self.duration, self.region)
@@ -80,7 +80,7 @@ def load(match_id):
     db = credentials.getDatabase()
 
     cur = db.cursor()
-    query = '''SELECT * FROM match WHERE id = %s;'''
+    query = '''SELECT * FROM game WHERE id = %s;'''
     cur.execute(query, match_id)
 
     m = ""
@@ -107,6 +107,9 @@ def fetch_match(match_id, region):
 
     response = urllib.urlopen(url);
     data = json.loads(response.read())
+
+    version = ""
+    duration = ""
 
     for key in data:
         if key == 'matchVersion':
@@ -154,14 +157,9 @@ def fetch_match(match_id, region):
                         stats = p[key]
 
                         # item info
-                        item0 = stats['item0']
-                        item1 = stats['item1']
-                        item2 = stats['item2']
-                        item3 = stats['item3']
-                        item4 = stats['item4']
-                        item5 = stats['item5']
-                        item6 = stats['item6']
+                        items = [stats['item0'], stats['item1'], stats['item2'], stats['item3'], stats['item4'], stats['item5'], stats['item6']]
 
+                        # stats
                         kills = stats['kills']
                         deaths = stats['deaths']
                         assists = stats['assists']
@@ -175,7 +173,12 @@ def fetch_match(match_id, region):
                         win = stats['winner']
 
                 # construct items of participant
-                items = ParticipantItem(match_id, participant_id, item0, item1, item2, item3, item4, item5, item6, win)
+                inventory = []
+                slot = 0
+                if items is not None:
+                    for item in items:
+                        inventory.append(ParticipantItem(match_id, participant_id, item, slot, win))
+                        slot += 1
 
                 # construct stats of participant
                 stat = ParticipantStat(match_id, participant_id)
@@ -184,13 +187,43 @@ def fetch_match(match_id, region):
                 stat.__setOther__(champ_level, gold_earned, win)
 
                 # construct participant object
-                participant = Participant(match_id, participant_id, champion_id, team_id, win, lane, items, stat)
+                participant = Participant(match_id, participant_id, champion_id, team_id, win, lane, inventory, stat)
 
                 list_participants.append(participant)
 
     return Match(match_id, version, duration, region, list_participants, banned_champs)
 
-# match = fetch_match(1852538938, 'na')
+def get_total_matches(version, region='all'):
+    '''
+    Args:
+        version: Version of the match
+        region: Region of the match
+    Returns:
+        The total number of matches that happened in this region and version.
+    '''
+    # Get new database instance
+    db = credentials.getDatabase()
+
+    cur = db.cursor()
+
+    if region == 'all':
+        query = '''SELECT COUNT(*) FROM game WHERE version = %s;'''
+        cur.execute(query, version)
+    else:
+        query = '''SELECT COUNT(*) FROM game WHERE region = %s AND version = %s;'''
+        data = (region, version)
+        cur.execute(query, data)
+
+    for tup in cur:
+        count = int(tup[0])
+
+    # commit query
+    db.commit()
+    db.close()
+
+    return count
+
+# match = fetch_match(98509596, 'oce')
 
 # # save the match to db
 # match.save()
@@ -199,4 +232,5 @@ def fetch_match(match_id, region):
 # for p in match.participants:
 #     p.save()
 
-
+# print(get_total_matches('5.14.0.329', 'na'))
+# print(get_total_matches('5.14.0.329'))

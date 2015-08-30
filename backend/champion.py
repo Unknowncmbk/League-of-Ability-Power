@@ -227,7 +227,7 @@ def get_all_ban_rates(version, region):
 # for c in result:
 # 	c.save()
 
-# print(get_all_ban_rates('5.14.0.329', 'na'))
+print(get_all_ban_rates('5.14.0.329', 'na'))
 
 
 

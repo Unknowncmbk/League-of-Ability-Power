@@ -1,0 +1,6 @@
+-- DROP TABLE QUERIES
+DROP TABLE banned_champion;
+DROP TABLE participant_item;
+DROP TABLE participant_stat;
+DROP TABLE participant;
+DROP TABLE game;

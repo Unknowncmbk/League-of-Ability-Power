@@ -1,0 +1,47 @@
++------+----------------------------------+----------+
+| 3157 | Zhonya's Hourglass               |     5545 |
+| 3089 | Rabadon's Deathcap               |     4611 |
+| 3285 | Luden's Echo                     |     4536 |
+| 3135 | Void Staff                       |     2815 |
+| 3078 | Trinity Force                    |     2810 |
+| 3165 | Morellonomicon                   |     2356 |
+| 3116 | Rylai's Crystal Scepter          |     1945 |
+| 3027 | Rod of Ages                      |     1885 |
+| 3020 | Sorcerer's Shoes                 |     1878 |
+| 1058 | Needlessly Large Rod             |     1452 |
+| 3001 | Abyssal Scepter                  |     1383 |
+| 3151 | Liandry's Torment                |     1160 |
+| 1026 | Blasting Wand                    |     1074 |
+| 3100 | Lich Bane                        |     1030 |
+| 1056 | Doran's Ring                     |      979 |
+| 3174 | Athene's Unholy Grail            |      769 |
+| 3025 | Iceborn Gauntlet                 |      760 |
+| 1052 | Amplifying Tome                  |      661 |
+| 3092 | Frost Queen's Claim              |      646 |
+| 2041 | Crystalline Flask                |      581 |
+| 3115 | Nashor's Tooth                   |      540 |
+| 3158 | Ionian Boots of Lucidity         |      528 |
+| 3152 | Will of the Ancients             |      491 |
+| 3057 | Sheen                            |      412 |
+| 3040 | Seraph's Embrace                 |      395 |
+| 3136 | Haunting Guise                   |      309 |
+| 3708 | Enchantment: Runeglaive          |      306 |
+| 3724 | Enchantment: Runeglaive          |      293 |
+| 3113 | Aether Wisp                      |      291 |
+| 3041 | Mejai's Soulstealer              |      220 |
+| 3108 | Fiendish Codex                   |      201 |
+| 3010 | Catalyst the Protector           |      166 |
+| 3146 | Hextech Gunblade                 |      148 |
+| 3114 | Forbidden Idol                   |      144 |
+| 3070 | Tear of the Goddess              |      138 |
+| 3303 | Spellthief's Edge                |      126 |
+| 3003 | Archangel's Staff                |      120 |
+| 3504 | Ardent Censer                    |      105 |
+| 3101 | Stinger                          |       91 |
+| 3098 | Frostfang                        |       91 |
+| 3023 | Twin Shadows                     |       74 |
+| 3060 | Banner of Command                |       67 |
+| 3716 | Enchantment: Runeglaive          |       64 |
+| 3145 | Hextech Revolver                 |       56 |
+| 3028 | Chalice of Harmony               |       47 |
+| 1027 | Sapphire Crystal                 |       47 |

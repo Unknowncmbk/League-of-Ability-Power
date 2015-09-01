@@ -18,6 +18,7 @@ To populate match data, if you don't have any:
 - Edit credentials.txt with MySQL database connection details and your API key from Riot Games.
 - Copy/paste queries from ./backend/schema/database-schema.txt into MySQL in order to populate tables.
 - Edit timer.py REQUESTS_PER_INTERVAL field to include how many max requests you want to send to Riot.
+- Run champion.py's fetch_all_champions() to populate champion records (Thresh, Akali, etc) and run item.py's fetch_all_items() to grab info on each item.
 - Optional: You can uncomment the counter in the method read_data() to limit how many matches you want to pull. For example, if you're interested in only generating 5 matches from each file.
 
 ## Snapshots

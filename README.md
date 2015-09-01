@@ -30,4 +30,4 @@ TBA
 This project or its contributors are no way affilated with Riot Games.
 
 ## License
-A copy of the Benchmark's license can be found [here](https://github.com/Unknowncmbk/Two-Shot/blob/master/LICENSE).
+A copy of the TwoShot's license can be found [here](https://github.com/Unknowncmbk/Two-Shot/blob/master/LICENSE).
